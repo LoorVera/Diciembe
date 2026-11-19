@@ -1,0 +1,23 @@
+.content {
+  background:
+    radial-gradient(500px 220px at 20% 0%, rgba(216, 178, 106, 0.12), transparent 70%),
+    linear-gradient(180deg, rgba(12, 28, 50, 0.98), rgba(7, 20, 38, 0.98));
+  border: 1px solid rgba(243, 221, 176, 0.18);
+  color: var(--text-main);
+}
+
+.header {
+  background: transparent;
+  border-bottom: 1px solid rgba(243, 221, 176, 0.1);
+}
+
+.body {
+  padding-top: var(--mantine-spacing-md);
+}
+
+.stage {
+  min-height: 320px;
+  display: grid;
+  place-items: center;
+  padding: 8px 4px 4px;
+}

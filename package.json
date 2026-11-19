@@ -1,0 +1,35 @@
+{
+  "name": "diciembre-magico",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "typecheck:functions": "tsc -p tsconfig.functions.json --noEmit",
+    "dev:cf": "npm run build && wrangler pages dev dist",
+    "check": "npm run typecheck && npm run typecheck:functions && npm run build"
+  },
+  "dependencies": {
+    "@mantine/core": "8.3.8",
+    "@mantine/hooks": "8.3.8",
+    "firebase": "13.4.0",
+    "jose": "6.2.18",
+    "lucide-react": "1.76.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-router-dom": "7.18.6",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "5.20261119.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "5.2.0",
+    "typescript": "5.9.3",
+    "vite": "7.3.1",
+    "wrangler": "4.165.0"
+  }
+}

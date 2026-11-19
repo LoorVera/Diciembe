@@ -1,0 +1,126 @@
+.header {
+  position: relative;
+  border-bottom: 1px solid rgba(243, 221, 176, 0.12);
+  background:
+    radial-gradient(700px 220px at 20% 0%, rgba(216, 178, 106, 0.12), transparent 70%),
+    linear-gradient(180deg, rgba(12, 28, 50, 0.65), rgba(7, 20, 38, 0.2));
+  backdrop-filter: blur(8px);
+}
+
+.lights {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 18px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  padding: 0 8px;
+  pointer-events: none;
+}
+
+.lights::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(243, 221, 176, 0.25);
+}
+
+.bulb {
+  width: 8px;
+  height: 12px;
+  border-radius: 0 0 8px 8px;
+  margin-top: 4px;
+  background: var(--color);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--color) 70%, transparent);
+  animation: twinkle 2.8s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -0.18s);
+  --color: #d8b26a;
+}
+
+.bulb:nth-child(4n + 1) {
+  --color: #d8b26a;
+}
+.bulb:nth-child(4n + 2) {
+  --color: #d46a63;
+}
+.bulb:nth-child(4n + 3) {
+  --color: #6fc3a1;
+}
+.bulb:nth-child(4n + 4) {
+  --color: #b9d8f2;
+}
+
+.hero {
+  padding-top: 10px;
+}
+
+.kicker {
+  color: var(--gold-soft);
+}
+
+.title {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.05;
+  margin: 0;
+  background: linear-gradient(180deg, #fff7e6 0%, #d8b26a 55%, #f3ddb0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sparkle {
+  color: var(--gold);
+  filter: drop-shadow(0 0 10px rgba(216, 178, 106, 0.35));
+  animation: float 4s ease-in-out infinite;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+.quote {
+  color: rgba(246, 251, 255, 0.85);
+  margin-top: 4px;
+}
+
+.logout {
+  flex-shrink: 0;
+  backdrop-filter: blur(6px);
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translateY(0);
+    filter: brightness(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(1px);
+    filter: brightness(1.15);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bulb,
+  .sparkle {
+    animation: none;
+  }
+}
