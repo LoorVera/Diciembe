@@ -22,14 +22,27 @@ export default function CalendarPage() {
   // Al volver desde el enlace externo (p. ej. con el botón atrás o bfcache),
   // limpiamos el estado de carga/éxito para que la tarjeta no quede bloqueada.
   useEffect(() => {
-    const handlePageShow = () => {
+    const resetTransientStatus = () => {
       setSpecialStatus((current) =>
         current && current.phase !== 'error' ? null : current,
       );
     };
 
-    window.addEventListener('pageshow', handlePageShow);
-    return () => window.removeEventListener('pageshow', handlePageShow);
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        resetTransientStatus();
+      }
+    };
+
+    window.addEventListener('pageshow', resetTransientStatus);
+    window.addEventListener('focus', resetTransientStatus);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      window.removeEventListener('pageshow', resetTransientStatus);
+      window.removeEventListener('focus', resetTransientStatus);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, []);
 
   const openSpecial = useCallback(async (day: SpecialDayDefinition) => {
