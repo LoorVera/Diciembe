@@ -1,6 +1,6 @@
 import { Alert, Box, Stack, Text } from '@mantine/core';
 import { AlertCircle, Info } from 'lucide-react';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { CalendarGrid } from '../components/calendar/CalendarGrid';
 import { ChristmasModal } from '../components/christmas/ChristmasModal';
 import { AppLayout } from '../components/layout/AppLayout';
@@ -18,6 +18,19 @@ export default function CalendarPage() {
   }, []);
 
   const closeNormal = useCallback(() => setActiveDay(null), []);
+
+  // Al volver desde el enlace externo (p. ej. con el botón atrás o bfcache),
+  // limpiamos el estado de carga/éxito para que la tarjeta no quede bloqueada.
+  useEffect(() => {
+    const handlePageShow = () => {
+      setSpecialStatus((current) =>
+        current && current.phase !== 'error' ? null : current,
+      );
+    };
+
+    window.addEventListener('pageshow', handlePageShow);
+    return () => window.removeEventListener('pageshow', handlePageShow);
+  }, []);
 
   const openSpecial = useCallback(async (day: SpecialDayDefinition) => {
     setActiveDay(null);
