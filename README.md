@@ -180,3 +180,4 @@ Configúralas en **Cloudflare Dashboard > Pages > tu proyecto > Settings > Envir
 
 Sin estas credenciales/variables no es posible verificar de extremo a extremo el inicio de sesión real ni la resolución de los 6 enlaces especiales; la compilación, la estructura y la lógica de validación/protección sí están implementadas y comprobadas.
 # Diciembe
+# Diciembe
